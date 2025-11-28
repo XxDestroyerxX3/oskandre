@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>☕ Menú Principal - Cafetería</title>
+    <style>
+        /* Estilos básicos para el menú */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F0EAD6; /* Color crema claro (fondo de café) */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .menu-container {
+            background-color: #5C4033; /* Marrón oscuro (café) */
+            padding: 40px 60px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        h1 {
+            color: #FFFFFF; /* Texto blanco */
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .opcion-btn {
+            display: block;
+            margin: 20px 0;
+            padding: 15px 30px;
+            text-decoration: none;
+            color: #5C4033; /* Texto marrón oscuro */
+            background-color: #D2B48C; /* Color café claro/brillante */
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+            width: 250px;
+        }
+        .opcion-btn:hover {
+            background-color: #E6D0A9; /* Un poco más claro al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <h1>☕ Bienvenido a Nuestra Cafetería</h1>
+        
+        <a href="cliente.html" class="opcion-btn">
+            🛒 Modo Cliente (Ver Productos y Comprar)
+        </a>
+
+        <a href="admin.html" class="opcion-btn">
+            🔒 Modo Administrador (Gestión)
+        </a>
+    </div>
+</body>
+</html>
