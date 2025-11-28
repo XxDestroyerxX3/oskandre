@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes de Ventas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style> 
+        /* (El CSS base del sidebar y la estructura es el mismo) */
+        body { font-family: 'Roboto', sans-serif; background-color: #F0EAD6; color: #333; margin: 0; display: flex; min-height: 100vh; }
+        .sidebar { width: 250px; background-color: #5C4033; color: #FFFFFF; padding: 20px 0; box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; }
+        .sidebar h2 { font-family: 'Oswald', sans-serif; text-align: center; color: #D2B48C; margin-bottom: 30px; font-size: 1.8em; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; }
+        .sidebar-nav a { display: block; padding: 15px 20px; text-decoration: none; color: #FFF7EB; font-weight: bold; transition: background-color 0.3s; border-left: 5px solid transparent; }
+        .sidebar-nav a:hover, .sidebar-nav .active { background-color: #8B4513; border-left-color: #D2B48C; }
+        .logout-link { margin-top: auto; text-align: center; padding: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .logout-link a { color: #D2B48C; text-decoration: none; font-weight: bold; }
+        .main-content { flex-grow: 1; padding: 40px; }
+        .main-content h1 { font-family: 'Oswald', sans-serif; color: #5C4033; font-size: 2.5em; margin-top: 0; }
+
+        /* --- Estilos de Resumen/Gráficos --- */
+        .summary-card {
+            background-color: #FFFFFF;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border-left: 5px solid #8B4513;
+        }
+        .summary-card h3 {
+            color: #5C4033;
+            border-bottom: 1px dashed #D2B48C;
+            padding-bottom: 5px;
+        }
+        .summary-card .value {
+            font-size: 3em;
+            font-family: 'Oswald', sans-serif;
+            color: #8B4513;
+        }
+        .chart-placeholder {
+            height: 300px;
+            background-color: #D2B48C;
+            border-radius: 5px;
+            text-align: center;
+            padding-top: 120px;
+            font-size: 1.5em;
+            color: #5C4033;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>☕ Panel Aroma</h2>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html">🏠 Dashboard</a>
+            <a href="productos-admin.html">📦 Gestionar Productos</a>
+            <a href="pedidos.html">🧾 Ver Pedidos</a>
+            <a href="reportes.html" class="active">📈 Reportes de Ventas</a>
+            <a href="usuarios.html">👥 Gestión de Usuarios</a>
+        </nav>
+        <div class="logout-link">
+            <a href="index.html">🚪 Cerrar Sesión</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h1>Reportes Financieros y Métricas</h1>
+        
+        <div class="summary-card">
+            <h3>Ventas Totales del Mes</h3>
+            <div class="value">$18,750.00</div>
+            <p>Meta del mes: $20,000.00</p>
+        </div>
+
+        <h3>Gráfico de Ventas Semanales (Simulado)</h3>
+        <div class="chart-placeholder">
+            [ Aquí iría un gráfico de barras o líneas real con una librería JS como Chart.js ]
+        </div>
+    </div>
+</body>
+</html>
