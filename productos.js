@@ -1,30 +1,32 @@
 [
     {
-        "id": 1,
-        "nombre": "Espresso Clásico",
-        "descripcion": "El shot perfecto de nuestro mejor grano tostado.",
+        "nombre": "Espresso Chiapas Clásico",
+        "descripcion": "El shot perfecto de nuestro mejor grano, tostado oscuro para un sabor intenso.",
         "precio": 2.50,
-        "imagen": "espresso.jpg"
+        "imagen": "cafeDeChiapas.jpg" 
     },
     {
-        "id": 2,
-        "nombre": "Latte de Caramelo",
-        "descripcion": "Leche vaporizada, café y jarabe de caramelo cremoso.",
-        "precio": 4.75,
-        "imagen": "latte.jpg"
+        "nombre": "Bolsas de Café Gourmet",
+        "descripcion": "Nuestro blend especial en presentación de 500g, ideal para llevar a casa.",
+        "precio": 14.99,
+        "imagen": "Bolsitas.jpg"
     },
     {
-        "id": 3,
-        "nombre": "Tarta de Chocolate",
-        "descripcion": "Famosa por su textura suave y ganache intenso.",
-        "precio": 5.00,
-        "imagen": "tarta.jpg"
+        "nombre": "Cerveza de Raíz Artesanal",
+        "descripcion": "Bebida refrescante y natural, con un toque dulce y especiado.",
+        "precio": 4.00,
+        "imagen": "CervezaDeRaiz.jpg"
     },
     {
-        "id": 4,
-        "nombre": "Capuccino de Vainilla",
-        "descripcion": "Espuma abundante y un toque dulce de vainilla.",
-        "precio": 4.50,
-        "imagen": "capuccino.jpg"
+        "nombre": "Vinagre Balsámico Premium",
+        "descripcion": "Vinagre de manzana puro y fermentado, excelente para ensaladas y digestión.",
+        "precio": 8.50,
+        "imagen": "Vinagre.jpg"
+    },
+    {
+        "nombre": "Vinagre de Manzana Orgánico",
+        "descripcion": "Botella grande de vinagre de manzana orgánico sin filtrar.",
+        "precio": 10.99,
+        "imagen": "VinagreDeManzana.jpg"
     }
 ]
