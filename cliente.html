@@ -6,7 +6,6 @@
     <title>Menú de Productos - Cafetería Aroma</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* [MISMO CSS DE ANTES para body, header, container, etc.] */
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #FFF7EB;
@@ -30,6 +29,7 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+        /* Estilos del Menú (Grid) */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -90,43 +90,53 @@
     </header>
     <div class="container">
         <div class="menu-grid" id="menu-productos">
-            </div>
+            <p style="grid-column: 1 / -1; text-align: center;">Cargando menú local...</p>
+        </div>
         
         <a href="index.html" class="back-link">← Volver al Menú Principal</a>
     </div>
 
     <script>
-        // Función para cargar y mostrar los productos
         function cargarProductos() {
-            // 1. Obtener los datos del archivo JSON
+            const menuGrid = document.getElementById('menu-productos');
+
+            // Usa fetch para obtener el archivo local productos.json
             fetch('productos.json')
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('No se encontró el archivo productos.json o hubo un error de red.');
+                    }
+                    return response.json();
+                })
                 .then(productos => {
-                    const menuGrid = document.getElementById('menu-productos');
-                    menuGrid.innerHTML = ''; // Limpiar el contenedor
+                    menuGrid.innerHTML = ''; // Limpia el mensaje de carga
                     
-                    // 2. Iterar sobre cada producto y crear su tarjeta HTML
+                    if (productos.length === 0) {
+                         menuGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">No hay productos disponibles.</p>';
+                         return;
+                    }
+                    
                     productos.forEach(producto => {
+                        // Construye la tarjeta, incluyendo la imagen cargada desde el JSON
                         const cardHTML = `
                             <div class="item-card">
+                                <img src="${producto.imagen}" alt="${producto.nombre}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
                                 <h2>${producto.nombre}</h2>
                                 <p>${producto.descripcion}</p>
-                                <div class="price">$${producto.precio.toFixed(2)}</div>
+                                <div class="price">$${parseFloat(producto.precio).toFixed(2)}</div>
                                 <a href="#" class="buy-btn">Añadir al Carrito</a>
                             </div>
                         `;
-                        // 3. Insertar la tarjeta en el contenedor
                         menuGrid.innerHTML += cardHTML;
                     });
                 })
                 .catch(error => {
                     console.error('Error al cargar los productos:', error);
-                    document.getElementById('menu-productos').innerHTML = '<p style="color:red;">No se pudieron cargar los productos. Inténtelo más tarde.</p>';
+                    menuGrid.innerHTML = '<p style="grid-column: 1 / -1; color:red; text-align: center;">Error: No se pudo cargar el archivo de productos. Asegúrate de que existe "productos.json".</p>';
                 });
         }
 
-        // Llamar a la función al cargar la página
-        cargarProductos();
+        document.addEventListener('DOMContentLoaded', cargarProductos);
     </script>
 </body>
 </html>
