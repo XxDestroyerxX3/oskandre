@@ -22,11 +22,5 @@
         "descripcion": "Vinagre de manzana puro y fermentado, excelente para ensaladas y digestión.",
         "precio": 8.50,
         "imagen": "imagen/Vinagre.jpg" 
-    },
-    {
-        "nombre": "Vinagre de Manzana Orgánico",
-        "descripcion": "Botella grande de vinagre de manzana orgánico sin filtrar.",
-        "precio": 10.99,
-        "imagen": "imagen/VinagreDeManzana.jpg"
     }
 ]
