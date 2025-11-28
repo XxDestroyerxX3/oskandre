@@ -3,59 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>☕ Menú Principal - Cafetería</title>
+    <title>☕ Menú Principal - Cafetería Aroma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilos básicos para el menú */
+        /* Paleta de Colores:
+           - Fondo principal: #FFF7EB (Crema muy claro)
+           - Fondo de la tarjeta: #5C4033 (Marrón Oscuro - Café Tostado)
+           - Botones: #D2B48C (Marrón Claro - Leche)
+           - Hover: #E6D0A9 (Marrón más claro)
+        */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #F0EAD6; /* Color crema claro (fondo de café) */
+            font-family: 'Oswald', sans-serif;
+            background-color: #FFF7EB; /* Fondo crema muy claro */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             flex-direction: column;
-        }
-        .menu-container {
-            background-color: #5C4033; /* Marrón oscuro (café) */
-            padding: 40px 60px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
+        .menu-container {
+            background-color: #5C4033; /* Marrón oscuro para el contraste */
+            padding: 50px 70px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Sombra más profunda */
+            border: 5px solid #D2B48C; /* Borde color café */
+        }
         h1 {
-            color: #FFFFFF; /* Texto blanco */
-            margin-bottom: 30px;
-            font-size: 2.5em;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+            font-size: 3em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        p.subtitle {
+            color: #D2B48C;
+            font-size: 1.2em;
+            margin-bottom: 40px;
         }
         .opcion-btn {
             display: block;
-            margin: 20px 0;
-            padding: 15px 30px;
+            margin: 25px auto;
+            padding: 18px 40px;
             text-decoration: none;
-            color: #5C4033; /* Texto marrón oscuro */
-            background-color: #D2B48C; /* Color café claro/brillante */
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.2em;
-            transition: background-color 0.3s ease;
-            width: 250px;
+            color: #5C4033;
+            background-color: #D2B48C; /* Color café claro para los botones */
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.3em;
+            transition: all 0.3s ease;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: none;
+            text-transform: uppercase;
         }
         .opcion-btn:hover {
-            background-color: #E6D0A9; /* Un poco más claro al pasar el mouse */
+            background-color: #E6D0A9;
+            transform: translateY(-3px); /* Efecto 3D al pasar el mouse */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Estilo para el botón de administrador (distinción sutil) */
+        .opcion-btn.admin-btn {
+            background-color: #8B4513; /* Un marrón más rojizo */
+            color: #FFFFFF;
+        }
+        .opcion-btn.admin-btn:hover {
+            background-color: #A0522D;
         }
     </style>
 </head>
 <body>
     <div class="menu-container">
-        <h1>☕ Bienvenido a Nuestra Cafetería</h1>
+        <h1>☕ Cafetería Aroma</h1>
+        <p class="subtitle">Seleccione su modo de acceso:</p>
         
         <a href="cliente.html" class="opcion-btn">
-            🛒 Modo Cliente (Ver Productos y Comprar)
+            🛒 Modo Cliente
         </a>
 
-        <a href="admin.html" class="opcion-btn">
-            🔒 Modo Administrador (Gestión)
+        <a href="admin.html" class="opcion-btn admin-btn">
+            🔑 Modo Administrador
         </a>
     </div>
 </body>
