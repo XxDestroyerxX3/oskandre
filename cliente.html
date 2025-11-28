@@ -2,11 +2,118 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Modo Cliente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Productos - Cafetería Aroma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FFF7EB; /* Fondo crema claro */
+            color: #5C4033; /* Texto marrón oscuro */
+            margin: 0;
+            padding: 30px;
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #D2B48C;
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3em;
+            color: #5C4033;
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* Estilos del Menú (Grid) */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 columnas en pantallas grandes */
+            gap: 30px;
+            padding: 20px 0;
+        }
+        .item-card {
+            background-color: #FFFFFF;
+            border: 1px solid #D2B48C;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .item-card h2 {
+            color: #8B4513; /* Marrón café */
+            font-family: 'Oswald', sans-serif;
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+        .price {
+            font-weight: bold;
+            color: #5C4033;
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .buy-btn {
+            display: inline-block;
+            background-color: #5C4033;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .buy-btn:hover {
+            background-color: #8B4513;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1.1em;
+            color: #5C4033;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <h1>¡Bienvenido, Cliente!</h1>
-    <p>Aquí se mostrará el menú de cafés y pasteles para la compra.</p>
-    <a href="index.html">Volver al Menú Principal</a>
+    <header>
+        <h1>☕ Menú de Cafés y Delicias</h1>
+    </header>
+    <div class="container">
+        <div class="menu-grid">
+            <div class="item-card">
+                <h2>Espresso Clásico</h2>
+                <p>El shot perfecto de nuestro mejor grano tostado.</p>
+                <div class="price">$2.50</div>
+                <a href="#" class="buy-btn">Añadir al Carrito</a>
+            </div>
+
+            <div class="item-card">
+                <h2>Latte de Caramelo</h2>
+                <p>Leche vaporizada, café y jarabe de caramelo cremoso.</p>
+                <div class="price">$4.75</div>
+                <a href="#" class="buy-btn">Añadir al Carrito</a>
+            </div>
+            
+            <div class="item-card">
+                <h2>Tarta de Chocolate</h2>
+                <p>Famosa por su textura suave y ganache intenso.</p>
+                <div class="price">$5.00</div>
+                <a href="#" class="buy-btn">Añadir al Carrito</a>
+            </div>
+
+            </div>
+        
+        <a href="index.html" class="back-link">← Volver al Menú Principal</a>
+    </div>
 </body>
 </html>
