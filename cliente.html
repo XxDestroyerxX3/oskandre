@@ -6,10 +6,11 @@
     <title>Menú de Productos - Cafetería Aroma</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        /* [MISMO CSS DE ANTES para body, header, container, etc.] */
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #FFF7EB; /* Fondo crema claro */
-            color: #5C4033; /* Texto marrón oscuro */
+            background-color: #FFF7EB;
+            color: #5C4033;
             margin: 0;
             padding: 30px;
         }
@@ -29,10 +30,9 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        /* Estilos del Menú (Grid) */
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 columnas en pantallas grandes */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             padding: 20px 0;
         }
@@ -50,7 +50,7 @@
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
         }
         .item-card h2 {
-            color: #8B4513; /* Marrón café */
+            color: #8B4513;
             font-family: 'Oswald', sans-serif;
             margin-top: 0;
             font-size: 1.8em;
@@ -86,34 +86,47 @@
 </head>
 <body>
     <header>
-        <h1>☕ Menú de Cafés y Delicias</h1>
+        <h1>☕ Nuestro Menú de Cafés</h1>
     </header>
     <div class="container">
-        <div class="menu-grid">
-            <div class="item-card">
-                <h2>Espresso Clásico</h2>
-                <p>El shot perfecto de nuestro mejor grano tostado.</p>
-                <div class="price">$2.50</div>
-                <a href="#" class="buy-btn">Añadir al Carrito</a>
-            </div>
-
-            <div class="item-card">
-                <h2>Latte de Caramelo</h2>
-                <p>Leche vaporizada, café y jarabe de caramelo cremoso.</p>
-                <div class="price">$4.75</div>
-                <a href="#" class="buy-btn">Añadir al Carrito</a>
-            </div>
-            
-            <div class="item-card">
-                <h2>Tarta de Chocolate</h2>
-                <p>Famosa por su textura suave y ganache intenso.</p>
-                <div class="price">$5.00</div>
-                <a href="#" class="buy-btn">Añadir al Carrito</a>
-            </div>
-
+        <div class="menu-grid" id="menu-productos">
             </div>
         
         <a href="index.html" class="back-link">← Volver al Menú Principal</a>
     </div>
+
+    <script>
+        // Función para cargar y mostrar los productos
+        function cargarProductos() {
+            // 1. Obtener los datos del archivo JSON
+            fetch('productos.json')
+                .then(response => response.json())
+                .then(productos => {
+                    const menuGrid = document.getElementById('menu-productos');
+                    menuGrid.innerHTML = ''; // Limpiar el contenedor
+                    
+                    // 2. Iterar sobre cada producto y crear su tarjeta HTML
+                    productos.forEach(producto => {
+                        const cardHTML = `
+                            <div class="item-card">
+                                <h2>${producto.nombre}</h2>
+                                <p>${producto.descripcion}</p>
+                                <div class="price">$${producto.precio.toFixed(2)}</div>
+                                <a href="#" class="buy-btn">Añadir al Carrito</a>
+                            </div>
+                        `;
+                        // 3. Insertar la tarjeta en el contenedor
+                        menuGrid.innerHTML += cardHTML;
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al cargar los productos:', error);
+                    document.getElementById('menu-productos').innerHTML = '<p style="color:red;">No se pudieron cargar los productos. Inténtelo más tarde.</p>';
+                });
+        }
+
+        // Llamar a la función al cargar la página
+        cargarProductos();
+    </script>
 </body>
 </html>
