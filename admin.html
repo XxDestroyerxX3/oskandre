@@ -3,126 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso de Administrador</title>
+    <title>Gestión de Productos</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* (El CSS se mantiene igual para el diseño) */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #333333;
-            color: #FFFFFF;
+        /* (CSS base para Sidebar y Estructura, igual que dashboard.html) */
+        body { font-family: 'Roboto', sans-serif; background-color: #F0EAD6; color: #333; margin: 0; display: flex; min-height: 100vh; }
+        .sidebar { width: 250px; background-color: #5C4033; color: #FFFFFF; padding: 20px 0; box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; }
+        .sidebar h2 { font-family: 'Oswald', sans-serif; text-align: center; color: #D2B48C; margin-bottom: 30px; font-size: 1.8em; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; }
+        .sidebar-nav a { display: block; padding: 15px 20px; text-decoration: none; color: #FFF7EB; font-weight: bold; transition: background-color 0.3s; border-left: 5px solid transparent; }
+        .sidebar-nav a:hover, .sidebar-nav .active { background-color: #8B4513; border-left-color: #D2B48C; }
+        .logout-link { margin-top: auto; text-align: center; padding: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .logout-link a { color: #D2B48C; text-decoration: none; font-weight: bold; }
+        .main-content { flex-grow: 1; padding: 40px; }
+        .main-content h1 { font-family: 'Oswald', sans-serif; color: #5C4033; font-size: 2.5em; margin-top: 0; }
+
+        /* --- Estilos de la Tabla y Botones --- */
+        .header-actions {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            flex-direction: column;
-        }
-        .login-box {
-            background-color: #5C4033;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            width: 350px;
-            text-align: center;
-        }
-        h1 {
-            font-family: 'Oswald', sans-serif;
-            color: #D2B48C;
-            margin-bottom: 30px;
-            font-size: 2.2em;
-        }
-        label {
-            display: block;
-            text-align: left;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #FFF7EB;
-        }
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 12px;
             margin-bottom: 20px;
-            border: 1px solid #D2B48C;
-            border-radius: 5px;
-            box-sizing: border-box;
         }
-        .submit-btn {
-            background-color: #D2B48C;
-            color: #5C4033;
-            padding: 12px 20px;
-            border: none;
+        .add-btn {
+            background-color: #8B4513;
+            color: #FFF;
+            padding: 10px 20px;
+            text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s;
+        }
+        .add-btn:hover {
+            background-color: #A0522D;
+        }
+        table {
             width: 100%;
-            text-transform: uppercase;
+            border-collapse: collapse;
+            background-color: #FFFFFF;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .submit-btn:hover {
-            background-color: #E6D0A9;
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
         }
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 30px;
-            font-size: 1em;
-            color: #D2B48C;
+        th {
+            background-color: #5C4033;
+            color: #FFF7EB;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 400;
+        }
+        .action-btns a {
+            margin-right: 10px;
+            color: #5C4033;
             text-decoration: none;
         }
-        .error-message {
-            color: #ffcccc;
-            margin-top: -10px;
-            margin-bottom: 10px;
+        .action-btns a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Estilos del Modal --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+        }
+        .modal-content {
+            background-color: #FFF7EB;
+            margin: 10% auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-btn:hover, .close-btn:focus {
+            color: #5C4033;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal-content h2 {
+            font-family: 'Oswald', sans-serif;
+            color: #5C4033;
+            border-bottom: 2px solid #D2B48C;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .modal-content label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #5C4033;
+        }
+        .modal-content input, .modal-content textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #D2B48C;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .modal-content button[type="submit"] {
+            margin-top: 20px;
+            background-color: #8B4513;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .product-img {
+            width: 50px; 
+            height: 50px; 
+            object-fit: cover; 
+            border-radius: 5px;
+            vertical-align: middle;
         }
     </style>
 </head>
 <body>
-    <div class="login-box">
-        <h1>🔒 Acceso de Gestión</h1>
+
+    <div class="sidebar">
+        <h2>☕ Panel Aroma</h2>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html">🏠 Dashboard</a>
+            <a href="productos-admin.html" class="active">📦 Gestionar Productos</a>
+            <a href="pedidos.html">🧾 Ver Pedidos</a>
+            <a href="reportes.html">📈 Reportes de Ventas</a>
+            <a href="usuarios.html">👥 Gestión de Usuarios</a>
+        </nav>
+        <div class="logout-link">
+            <a href="index.html">🚪 Cerrar Sesión</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header-actions">
+            <h1>Gestión de Productos</h1>
+            <button class="add-btn" onclick="openModal()">+ Añadir Nuevo Producto</button>
+        </div>
         
-        <form id="adminForm" onsubmit="return checkLogin(event)">
-            <div>
-                <label for="username">Usuario:</label>
-                <input type="text" id="username" name="username" value="admin" required>
-            </div>
-            <div>
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
+        <table id="productsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Imagen</th> <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Stock (Simulado)</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><img src="cafeDeChiapas.jpg" alt="Espresso" class="product-img"></td>
+                    <td>Espresso Clásico</td>
+                    <td>Shot perfecto...</td>
+                    <td>$2.50</td>
+                    <td>150</td>
+                    <td class="action-btns">
+                        <a href="#">Editar</a>
+                        <a href="#">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="addProductModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Añadir Nuevo Producto</h2>
             
-            <p id="errorMsg" class="error-message" style="display:none;"></p>
-            
-            <button type="submit" class="submit-btn">Iniciar Sesión</button>
-        </form>
-        <a href="index.html" class="back-link">← Volver al Menú Principal</a>
+            <form id="addProductForm">
+                <label for="productName">Nombre del Producto:</label>
+                <input type="text" id="productName" required>
+
+                <label for="productImage">Ruta de la Imagen (Ej: cafe.jpg):</label>
+                <input type="text" id="productImage" required>
+
+                <label for="productDesc">Descripción Breve:</label>
+                <textarea id="productDesc" required></textarea>
+
+                <label for="productPrice">Precio ($):</label>
+                <input type="number" id="productPrice" step="0.01" required>
+
+                <label for="productStock">Stock Inicial:</label>
+                <input type="number" id="productStock" required>
+
+                <button type="submit">Guardar Producto</button>
+            </form>
+            <p style="font-size: 0.8em; color: green; margin-top: 15px;">
+                *NOTA: Este cambio solo es visible en esta sesión. Desaparecerá al recargar la página.
+            </p>
+        </div>
     </div>
 
     <script>
-        function checkLogin(event) {
-            // Previene el envío por defecto del formulario (que causaba el 405)
-            event.preventDefault(); 
-            
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
-            const errorMsg = document.getElementById('errorMsg');
-            
-            // Credenciales de prueba (SIMULACIÓN)
-            const USUARIO_CORRECTO = "admin";
-            const CONTRASENA_CORRECTA = "admin123";
+        // Referencias a elementos del DOM
+        const modal = document.getElementById('addProductModal');
+        const form = document.getElementById('addProductForm');
+        const tableBody = document.getElementById('productsTable').getElementsByTagName('tbody')[0];
 
-            errorMsg.style.display = 'none';
+        // 1. Mostrar/Ocultar el Modal
+        function openModal() { modal.style.display = 'block'; }
+        function closeModal() { modal.style.display = 'none'; form.reset(); }
+        window.onclick = function(event) { if (event.target == modal) { closeModal(); } }
 
-            if (user === USUARIO_CORRECTO && pass === CONTRASENA_CORRECTA) {
-                // Si las credenciales son correctas, redirigimos al dashboard
-                window.location.href = "dashboard.html";
-            } else {
-                // Si son incorrectas, mostramos un mensaje de error
-                errorMsg.textContent = "Usuario o contraseña incorrectos. Intente 'admin' / 'admin123'.";
-                errorMsg.style.display = 'block';
-            }
-            return false; // Evita la recarga de la página
-        }
+        // 2. Manejar la Adición del Producto
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Obtener datos del formulario
+            const name = document.getElementById('productName').value;
+            const image = document.getElementById('productImage').value; // <--- Captura la ruta de la imagen
+            const desc = document.getElementById('productDesc').value;
+            const price = parseFloat(document.getElementById('productPrice').value).toFixed(2);
+            const stock = document.getElementById('productStock').value;
+            
+            // Simular un nuevo ID
+            const newId = tableBody.rows.length + 1; 
+
+            // Crear una nueva fila para la tabla
+            const newRow = tableBody.insertRow();
+            
+            // Insertar celdas con los datos
+            newRow.insertCell(0).textContent = newId;
+            newRow.insertCell(1).innerHTML = `<img src="${image}" alt="${name}" class="product-img">`; // <--- Muestra la imagen
+            newRow.insertCell(2).textContent = name;
+            newRow.insertCell(3).textContent = desc.substring(0, 30) + (desc.length > 30 ? '...' : ''); 
+            newRow.insertCell(4).textContent = `$${price}`;
+            newRow.insertCell(5).textContent = stock;
+            
+            // Insertar botones de acción
+            const actionCell = newRow.insertCell(6);
+            actionCell.className = 'action-btns';
+            actionCell.innerHTML = '<a href="#">Editar</a> <a href="#">Eliminar</a>';
+
+            closeModal();
+            alert(`¡Producto "${name}" agregado con éxito (Simulado)!`);
+        });
     </script>
 </body>
 </html>
