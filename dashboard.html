@@ -3,57 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración</title>
+    <title>☕ Panel de Administración - Gestión</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        /* Paleta y Tipografía consistentes */
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #333333;
-            color: #FFFFFF;
-            padding: 40px;
+            background-color: #F0EAD6; /* Fondo crema claro */
+            color: #333;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
         }
-        h1 {
+
+        /* --- Estilos de la Barra Lateral (Sidebar) --- */
+        .sidebar {
+            width: 250px;
+            background-color: #5C4033; /* Marrón Oscuro */
+            color: #FFFFFF;
+            padding: 20px 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar h2 {
             font-family: 'Oswald', sans-serif;
-            color: #D2B48C;
-            border-bottom: 2px solid #5C4033;
+            text-align: center;
+            color: #D2B48C; /* Dorado/Café Claro */
+            margin-bottom: 30px;
+            font-size: 1.8em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: 10px;
         }
-        .main-menu {
-            list-style: none;
-            padding: 0;
-        }
-        .main-menu li a {
-            display: inline-block;
-            background-color: #5C4033;
-            color: #FFFFFF;
-            padding: 15px 25px;
-            margin: 10px 0;
+        .sidebar-nav a {
+            display: block;
+            padding: 15px 20px;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            color: #FFF7EB; /* Blanco Crema */
             font-weight: bold;
+            transition: background-color 0.3s;
+            border-left: 5px solid transparent;
         }
-        .main-menu li a:hover {
-            background-color: #8B4513;
+        .sidebar-nav a:hover, .sidebar-nav .active {
+            background-color: #8B4513; /* Marrón más rojizo */
+            border-left-color: #D2B48C;
         }
         .logout-link {
-            display: block;
-            margin-top: 30px;
+            margin-top: auto; /* Empuja el botón al fondo */
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .logout-link a {
             color: #D2B48C;
             text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* --- Estilos del Contenido Principal --- */
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+        }
+        .main-content h1 {
+            font-family: 'Oswald', sans-serif;
+            color: #5C4033;
+            font-size: 2.5em;
+            margin-top: 0;
+        }
+        .welcome-message {
+            color: #8B4513;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        /* --- Estilos de la Tarjeta de Información (Simulando Estadísticas) --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .stat-card {
+            background-color: #FFFFFF;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #D2B48C; /* Barra de color para destacar */
+        }
+        .stat-card .value {
+            font-size: 2.5em;
+            font-family: 'Oswald', sans-serif;
+            color: #5C4033;
+            margin-bottom: 5px;
+        }
+        .stat-card .label {
+            color: #8B4513;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1>Panel de Administración</h1>
-    <p>¡Bienvenido de vuelta, Admin! Desde aquí podrías gestionar el inventario.</p>
 
-    <ul class="main-menu">
-        <li><a href="#">Gestionar Productos</a></li>
-        <li><a href="#">Ver Pedidos</a></li>
-        <li><a href="#">Reportes de Ventas</a></li>
-    </ul>
+    <div class="sidebar">
+        <h2>☕ Panel Aroma</h2>
+        <nav class="sidebar-nav">
+            <a href="#" class="active">🏠 Dashboard</a>
+            <a href="#">📦 Gestionar Productos</a>
+            <a href="#">🧾 Ver Pedidos</a>
+            <a href="#">📈 Reportes de Ventas</a>
+            <a href="#">👥 Gestión de Usuarios</a>
+        </nav>
+        <div class="logout-link">
+            <a href="index.html">🚪 Cerrar Sesión</a>
+        </div>
+    </div>
 
-    <a href="index.html" class="logout-link">Cerrar Sesión</a>
+    <div class="main-content">
+        <h1>Dashboard</h1>
+        <p class="welcome-message">¡Bienvenido de vuelta, Admin! Este es un resumen rápido de la actividad.</p>
+
+        <div class="stats-grid">
+            
+            <div class="stat-card">
+                <div class="value">$1,250.00</div>
+                <div class="label">Ventas Hoy</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="value">15</div>
+                <div class="label">Nuevos Pedidos</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="value">42</div>
+                <div class="label">Productos Activos</div>
+            </div>
+            
+             <div class="stat-card">
+                <div class="value" style="color: #CC0000;">3</div>
+                <div class="label">Alertas de Stock</div>
+            </div>
+
+        </div>
+        
+        <h2 style="margin-top: 50px; color: #5C4033;">Actividad Reciente</h2>
+        <p>Los últimos pedidos y movimientos de stock aparecerían aquí.</p>
+        
+    </div>
 </body>
 </html>
